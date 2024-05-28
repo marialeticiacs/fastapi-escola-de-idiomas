@@ -9,10 +9,8 @@ def get_professors(db: Session, skip: int = 0, limit: int = 10):
 
 def create_professor(db: Session, professor: schemas.ProfessorCreate):
     db_professor = models.Professor(**professor.dict())
-    db.add(db_professor)
-    db.commit()
-    db.refresh(db_professor)
-    return db_professor
+    db_professor = models.Professor(nome=professor.nome)
+
 
 def update_professor(db: Session, db_professor: models.Professor):
     db.commit()
@@ -24,3 +22,4 @@ def delete_professor(db: Session, professor_id: int):
     db.delete(db_professor)
     db.commit()
     return db_professor
+

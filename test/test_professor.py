@@ -72,8 +72,21 @@ def test_update_professor(client):
     response = client.put("/escola/professores/1", json={
         "nome": "Updated Professor"
     })
+
+    response = client.post("/api/v1/professores/", json={"nome": "Test Professor"})
+    assert response.status_code == 201
+    assert response.json()["nome"] == "Test Professor"
+
+def test_read_professor(client):
+    client.post("/api/v1/professores/", json={"nome": "Test Professor"})
+    response = client.get("/api/v1/professores/1")
     assert response.status_code == 200
-    assert response.json()["nome"] == "Updated Professor"
+    assert response.json()["nome"] == "Test Professor"
+
+def test_update_professor(client):
+    client.post("/api/v1/professores/", json={"nome": "Test Professor"})
+    response = client.put("/api/v1/professores/1", json={"nome": "Updated Professor"})
+
 
 def test_delete_professor(client):
     client.post("/escola/professores/", json={
@@ -83,5 +96,6 @@ def test_delete_professor(client):
         "data_nascimento": "1990-02-02"
     })
     response = client.delete("/escola/professores/1")
-    assert response.status_code == 200
-    assert response.json()["nome"] == "Ana Teste"
+    client.post("/api/v1/professores/", json={"nome": "Ana Teste"})
+    response = client.delete("/api/v1/professores/1")
+

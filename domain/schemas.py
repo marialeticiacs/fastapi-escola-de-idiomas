@@ -77,7 +77,6 @@ class Matricula(MatriculaBase):
 
     class Config:
         from_attributes = True
-
 class NivelBase(BaseModel):  
     nome: Optional[str] = None  
     descricao: Optional[str] = None
@@ -92,3 +91,4 @@ class Nivel(NivelBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
