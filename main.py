@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from controller import professor_controller, nivel_controller
+from controller import professor_controller, nivel_controller, aluno_controller
 
 
 app = FastAPI()
@@ -13,4 +13,4 @@ def read_root():
 
 app.include_router(professor_controller.router, prefix="/escola")
 app.include_router(nivel_controller.router, prefix="/escola")
-
+app.include_router(aluno_controller.router, prefix="/escola")

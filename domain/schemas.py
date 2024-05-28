@@ -17,6 +17,7 @@ class Professor(ProfessorBase):
 
     class Config:
         from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class CursoBase(BaseModel):
     nome: str
@@ -37,10 +38,23 @@ class Curso(CursoBase):
 
 class AlunoBase(BaseModel):
     nome: str
+    model_config = ConfigDict(from_attributes=True)
+
+class AlunoBase(BaseModel):
+    nome: str
+    cpf: str 
+    email: str 
     dt_nascimento: date
 
 class AlunoCreate(AlunoBase):
     pass
+
+
+class AlunoUpdate(BaseModel):
+    nome: Optional[str] = None
+    cpf: Optional[str] = None
+    email: Optional[str] = None
+    dt_nascimento: Optional[date] = None
 
 class Aluno(AlunoBase):
     id: int
@@ -48,6 +62,7 @@ class Aluno(AlunoBase):
 
     class Config:
         from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class SalaBase(BaseModel):
     insumo: str
@@ -62,6 +77,7 @@ class Sala(SalaBase):
 
     class Config:
         from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class MatriculaBase(BaseModel):
     data_matricula: date
@@ -79,16 +95,21 @@ class Matricula(MatriculaBase):
         from_attributes = True
 class NivelBase(BaseModel):  
     nome: Optional[str] = None  
+
+    model_config = ConfigDict(from_attributes=True)
+
+class NivelBase(BaseModel):
+    nome: Optional[str] = None
     descricao: Optional[str] = None
 
 class NivelCreate(NivelBase):
     pass
 
 class NivelUpdate(NivelBase): 
+class NivelUpdate(NivelBase):
     pass
 
 class Nivel(NivelBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
-
