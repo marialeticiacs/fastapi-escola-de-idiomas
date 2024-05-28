@@ -25,4 +25,3 @@ def delete_professor(db: Session, professor_id: int):
     db.delete(db_professor)
     db.commit()
     return db_professor
-

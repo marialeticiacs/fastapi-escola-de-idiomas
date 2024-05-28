@@ -72,8 +72,6 @@ def test_update_professor(client):
     response = client.put("/escola/professores/1", json={
         "nome": "Updated Professor"
     })
-
-
     response = client.post("/api/v1/professores/", json={"nome": "Test Professor"})
     assert response.status_code == 201
     assert response.json()["nome"] == "Test Professor"
@@ -87,7 +85,6 @@ def test_read_professor(client):
 def test_update_professor(client):
     client.post("/api/v1/professores/", json={"nome": "Test Professor"})
     response = client.put("/api/v1/professores/1", json={"nome": "Updated Professor"})
-
     assert response.status_code == 200
     assert response.json()["nome"] == "Updated Professor"
 

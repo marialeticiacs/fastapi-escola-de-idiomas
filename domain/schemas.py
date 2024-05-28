@@ -49,7 +49,6 @@ class AlunoBase(BaseModel):
 class AlunoCreate(AlunoBase):
     pass
 
-
 class AlunoUpdate(BaseModel):
     nome: Optional[str] = None
     cpf: Optional[str] = None
@@ -66,10 +65,18 @@ class Aluno(AlunoBase):
 
 class SalaBase(BaseModel):
     insumo: str
+    model_config = ConfigDict(from_attributes=True)
+
+class SalaBase(BaseModel):
+    nome: str
     capacidade: int
 
 class SalaCreate(SalaBase):
     pass
+
+class SalaUpdate(BaseModel):
+    nome: Optional[str] = None
+    capacidade: Optional[int] = None
 
 class Sala(SalaBase):
     id: int
@@ -95,7 +102,6 @@ class Matricula(MatriculaBase):
         from_attributes = True
 class NivelBase(BaseModel):  
     nome: Optional[str] = None  
-
     model_config = ConfigDict(from_attributes=True)
 
 class NivelBase(BaseModel):
@@ -106,10 +112,26 @@ class NivelCreate(NivelBase):
     pass
 
 class NivelUpdate(NivelBase): 
+
+  
 class NivelUpdate(NivelBase):
     pass
 
 class Nivel(NivelBase):
     id: int
+    model_config = ConfigDict(from_attributes=True)
 
+class MaterialBase(BaseModel):
+    nome: str
+    descricao: str
+
+class MaterialCreate(MaterialBase):
+    pass
+
+class MaterialUpdate(BaseModel):
+    nome: Optional[str] = None
+    descricao: Optional[str] = None
+
+class Material(MaterialBase):
+    id: int
     model_config = ConfigDict(from_attributes=True)

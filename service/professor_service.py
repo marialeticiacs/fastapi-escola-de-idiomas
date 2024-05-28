@@ -26,7 +26,6 @@ def update_professor(db: Session, professor_id: int, professor: schemas.Professo
     
     return professor_repository.update_professor(db, db_professor)
 
-
 def delete_professor(db: Session, professor_id: int):
     db_professor = professor_repository.get_professor(db, professor_id)
     if db_professor is None:
