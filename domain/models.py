@@ -7,6 +7,9 @@ class Professor(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False, index=True)
+    cpf = Column(String, nullable=False, index=True)
+    email = Column(String, nullable=False, index=True)
+    data_nascimento = Column(Date, nullable=False)
     cursos = relationship('Curso', back_populates='professor')
 
 class Curso(Base):
@@ -51,3 +54,10 @@ class Matricula(Base):
 
     aluno = relationship('Aluno', back_populates='matriculas')
     curso = relationship('Curso', back_populates='matriculas')
+
+class Nivel(Base):  
+    __tablename__ = 'niveis'
+
+    id = Column(Integer, primary_key=True, index=True)
+    nome = Column(String, nullable=False, index=True)
+    descricao = Column(String, nullable=True)

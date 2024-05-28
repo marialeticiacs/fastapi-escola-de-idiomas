@@ -1,9 +1,12 @@
+from typing import Optional, List
 from pydantic import BaseModel, ConfigDict
 from datetime import date
-from typing import List
 
 class ProfessorBase(BaseModel):
-    nome: str
+    nome: Optional[str] = None
+    cpf: Optional[str] = None
+    email: Optional[str] = None
+    data_nascimento: Optional[date] = None
 
 class ProfessorCreate(ProfessorBase):
     pass
@@ -74,3 +77,18 @@ class Matricula(MatriculaBase):
 
     class Config:
         from_attributes = True
+class NivelBase(BaseModel):  
+    nome: Optional[str] = None  
+    descricao: Optional[str] = None
+
+class NivelCreate(NivelBase):
+    pass
+
+class NivelUpdate(NivelBase): 
+    pass
+
+class Nivel(NivelBase):
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
+

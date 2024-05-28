@@ -19,7 +19,13 @@ def update_professor(db: Session, professor_id: int, professor: schemas.Professo
     db_professor = professor_repository.get_professor(db, professor_id)
     if db_professor is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Professor não encontrado")
-    return professor_repository.update_professor(db, professor_id, professor)
+    
+    update_data = professor.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_professor, key, value)
+    
+    return professor_repository.update_professor(db, db_professor)
+
 
 def delete_professor(db: Session, professor_id: int):
     db_professor = professor_repository.get_professor(db, professor_id)

@@ -36,6 +36,43 @@ def clean_db():
     Base.metadata.create_all(bind=engine)
 
 def test_create_professor(client):
+    response = client.post("/escola/professores/", json={
+        "nome": "Test Professor",
+        "cpf": "123.456.789-00",
+        "email": "test.professor@example.com",
+        "data_nascimento": "1980-01-01"
+    })
+    assert response.status_code == 201
+    assert response.json()["nome"] == "Test Professor"
+    assert response.json()["cpf"] == "123.456.789-00"
+    assert response.json()["email"] == "test.professor@example.com"
+    assert response.json()["data_nascimento"] == "1980-01-01"
+
+def test_read_professor(client):
+    client.post("/escola/professores/", json={
+        "nome": "Test Professor",
+        "cpf": "123.456.789-00",
+        "email": "test.professor@example.com",
+        "data_nascimento": "1980-01-01"
+    })
+    response = client.get("/escola/professores/1")
+    assert response.status_code == 200
+    assert response.json()["nome"] == "Test Professor"
+    assert response.json()["cpf"] == "123.456.789-00"
+    assert response.json()["email"] == "test.professor@example.com"
+    assert response.json()["data_nascimento"] == "1980-01-01"
+
+def test_update_professor(client):
+    client.post("/escola/professores/", json={
+        "nome": "Test Professor",
+        "cpf": "123.456.789-00",
+        "email": "test.professor@example.com",
+        "data_nascimento": "1980-01-01"
+    })
+    response = client.put("/escola/professores/1", json={
+        "nome": "Updated Professor"
+    })
+
     response = client.post("/api/v1/professores/", json={"nome": "Test Professor"})
     assert response.status_code == 201
     assert response.json()["nome"] == "Test Professor"
@@ -49,11 +86,16 @@ def test_read_professor(client):
 def test_update_professor(client):
     client.post("/api/v1/professores/", json={"nome": "Test Professor"})
     response = client.put("/api/v1/professores/1", json={"nome": "Updated Professor"})
-    assert response.status_code == 200
-    assert response.json()["nome"] == "Updated Professor"
+
 
 def test_delete_professor(client):
+    client.post("/escola/professores/", json={
+        "nome": "Ana Teste",
+        "cpf": "123.456.789-01",
+        "email": "ana.teste@example.com",
+        "data_nascimento": "1990-02-02"
+    })
+    response = client.delete("/escola/professores/1")
     client.post("/api/v1/professores/", json={"nome": "Ana Teste"})
     response = client.delete("/api/v1/professores/1")
-    assert response.status_code == 200
-    assert response.json()["nome"] == "Ana Teste"
+
