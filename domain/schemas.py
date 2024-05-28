@@ -15,6 +15,8 @@ class Professor(ProfessorBase):
     id: int
     cursos: List['Curso'] = []
 
+    class Config:
+        from_attributes = True
     model_config = ConfigDict(from_attributes=True)
 
 class CursoBase(BaseModel):
@@ -31,6 +33,11 @@ class Curso(CursoBase):
     professor: Professor
     sala: 'Sala'
 
+    class Config:
+        from_attributes = True
+
+class AlunoBase(BaseModel):
+    nome: str
     model_config = ConfigDict(from_attributes=True)
 
 class AlunoBase(BaseModel):
@@ -52,6 +59,12 @@ class Aluno(AlunoBase):
     id: int
     matriculas: List['Matricula'] = []
 
+    class Config:
+        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+
+class SalaBase(BaseModel):
+    insumo: str
     model_config = ConfigDict(from_attributes=True)
 
 class SalaBase(BaseModel):
@@ -69,6 +82,8 @@ class Sala(SalaBase):
     id: int
     cursos: List[Curso] = []
 
+    class Config:
+        from_attributes = True
     model_config = ConfigDict(from_attributes=True)
 
 class MatriculaBase(BaseModel):
@@ -83,6 +98,10 @@ class Matricula(MatriculaBase):
     aluno: Aluno
     curso: Curso
 
+    class Config:
+        from_attributes = True
+class NivelBase(BaseModel):  
+    nome: Optional[str] = None  
     model_config = ConfigDict(from_attributes=True)
 
 class NivelBase(BaseModel):
@@ -92,12 +111,14 @@ class NivelBase(BaseModel):
 class NivelCreate(NivelBase):
     pass
 
+class NivelUpdate(NivelBase): 
+
+  
 class NivelUpdate(NivelBase):
     pass
 
 class Nivel(NivelBase):
     id: int
-
     model_config = ConfigDict(from_attributes=True)
 
 class MaterialBase(BaseModel):
@@ -113,5 +134,4 @@ class MaterialUpdate(BaseModel):
 
 class Material(MaterialBase):
     id: int
-
     model_config = ConfigDict(from_attributes=True)

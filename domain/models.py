@@ -7,8 +7,8 @@ class Professor(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False, index=True)
-    cpf = Column(String, nullable=False, unique=True)
-    email = Column(String, nullable=False, unique=True)
+    cpf = Column(String, nullable=False, index=True)
+    email = Column(String, nullable=False, index=True)
     data_nascimento = Column(Date, nullable=False)
     cursos = relationship('Curso', back_populates='professor')
 
@@ -41,9 +41,9 @@ class Sala(Base):
     __tablename__ = 'salas'
 
     id = Column(Integer, primary_key=True, index=True)
+    insumo = Column(String, nullable=False)
     nome = Column(String, nullable=False)
     capacidade = Column(Integer, nullable=False)
-
     cursos = relationship('Curso', back_populates='sala')
 
 class Matricula(Base):
@@ -63,6 +63,7 @@ class Nivel(Base):
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False, index=True)
     descricao = Column(String, nullable=True)
+
 
 class Material(Base):
     __tablename__ = 'materiais'
