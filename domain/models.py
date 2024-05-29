@@ -13,18 +13,23 @@ class Professor(Base):
     cursos = relationship('Curso', back_populates='professor')
 
 class Curso(Base):
-    __tablename__ = 'cursos'
-
+    __tablename__ = "cursos"
+    
     id = Column(Integer, primary_key=True, index=True)
-    nome = Column(String, nullable=False, index=True)
-    id_professor = Column(Integer, ForeignKey('professores.id'), nullable=False)
-    id_sala = Column(Integer, ForeignKey('salas.id'), nullable=False)
-    data_inicio = Column(Date, nullable=False)
-    data_fim = Column(Date, nullable=False)
-
-    professor = relationship('Professor', back_populates='cursos')
-    sala = relationship('Sala', back_populates='cursos')
-    matriculas = relationship('Matricula', back_populates='curso')
+    nome = Column(String, index=True)
+    id_professor = Column(Integer, ForeignKey("professores.id"))
+    id_nivel = Column(Integer, ForeignKey("niveis.id"))
+    id_material = Column(Integer, ForeignKey("materiais.id"))
+    id_sala = Column(Integer, ForeignKey("salas.id"))
+    descricao = Column(String)
+    data_inicio = Column(Date)
+    data_fim = Column(Date)
+    
+    professor = relationship("Professor", back_populates="cursos")
+    nivel = relationship("Nivel", back_populates="cursos")
+    material = relationship("Material", back_populates="cursos")
+    sala = relationship("Sala", back_populates="cursos")
+    matriculas = relationship("Matricula", back_populates="curso")
 
 class Aluno(Base):
     __tablename__ = 'alunos'
@@ -47,15 +52,15 @@ class Sala(Base):
     cursos = relationship('Curso', back_populates='sala')
 
 class Matricula(Base):
-    __tablename__ = 'matriculas'
-
+    __tablename__ = "matriculas"
+    
     id = Column(Integer, primary_key=True, index=True)
-    id_aluno = Column(Integer, ForeignKey('alunos.id'), nullable=False)
-    id_curso = Column(Integer, ForeignKey('cursos.id'), nullable=False)
-    data_matricula = Column(Date, nullable=False)
-
-    aluno = relationship('Aluno', back_populates='matriculas')
-    curso = relationship('Curso', back_populates='matriculas')
+    id_aluno = Column(Integer, ForeignKey("alunos.id"))
+    id_curso = Column(Integer, ForeignKey("cursos.id"))
+    data_matricula = Column(Date)
+    
+    aluno = relationship("Aluno", back_populates="matriculas")
+    curso = relationship("Curso", back_populates="matriculas")
 
 class Nivel(Base):
     __tablename__ = 'niveis'
@@ -63,7 +68,7 @@ class Nivel(Base):
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False, index=True)
     descricao = Column(String, nullable=True)
-
+    cursos = relationship('Curso', back_populates='nivel')
 
 class Material(Base):
     __tablename__ = 'materiais'
@@ -71,3 +76,4 @@ class Material(Base):
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
+    cursos = relationship('Curso', back_populates='material')
