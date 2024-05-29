@@ -1,5 +1,5 @@
 from typing import Optional, List
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 from datetime import date
 
 class ProfessorBase(BaseModel):
@@ -16,34 +16,49 @@ class Professor(ProfessorBase):
     cursos: List['Curso'] = []
 
     class Config:
-        from_attributes = True
-    model_config = ConfigDict(from_attributes=True)
+        orm_mode = True
 
 class CursoBase(BaseModel):
     nome: str
+    id_professor: int
+    id_nivel: int
+    id_material: int
+    id_sala: int
+    descricao: Optional[str] = None
     data_inicio: date
     data_fim: date
 
 class CursoCreate(CursoBase):
-    id_professor: int
-    id_sala: int
+    pass
 
 class Curso(CursoBase):
     id: int
-    professor: Professor
-    sala: 'Sala'
+    professor: Optional[Professor] = None
+    nivel: Optional['Nivel'] = None
+    material: Optional['Material'] = None
+    sala: Optional['Sala'] = None
+    matriculas: List['Matricula'] = []
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+class CursoUpdate(BaseModel):
+    nome: Optional[str] = None
+    id_professor: Optional[int] = None
+    id_nivel: Optional[int] = None
+    id_material: Optional[int] = None
+    id_sala: Optional[int] = None
+    descricao: Optional[str] = None
+    data_inicio: Optional[date] = None
+    data_fim: Optional[date] = None
+
+    class Config:
+        orm_mode = True
 
 class AlunoBase(BaseModel):
     nome: str
-    model_config = ConfigDict(from_attributes=True)
-
-class AlunoBase(BaseModel):
-    nome: str
-    cpf: str 
-    email: str 
+    cpf: str
+    email: str
     dt_nascimento: date
 
 class AlunoCreate(AlunoBase):
@@ -60,12 +75,7 @@ class Aluno(AlunoBase):
     matriculas: List['Matricula'] = []
 
     class Config:
-        from_attributes = True
-    model_config = ConfigDict(from_attributes=True)
-
-class SalaBase(BaseModel):
-    insumo: str
-    model_config = ConfigDict(from_attributes=True)
+        orm_mode = True
 
 class SalaBase(BaseModel):
     nome: str
@@ -83,26 +93,31 @@ class Sala(SalaBase):
     cursos: List[Curso] = []
 
     class Config:
-        from_attributes = True
-    model_config = ConfigDict(from_attributes=True)
+        orm_mode = True
 
 class MatriculaBase(BaseModel):
+    id_aluno: int
+    id_curso: int
     data_matricula: date
 
 class MatriculaCreate(MatriculaBase):
-    id_aluno: int
-    id_curso: int
+    pass
 
 class Matricula(MatriculaBase):
     id: int
-    aluno: Aluno
-    curso: Curso
+    aluno: Optional[Aluno] = None
+    curso: Optional[Curso] = None
 
     class Config:
-        from_attributes = True
-class NivelBase(BaseModel):  
-    nome: Optional[str] = None  
-    model_config = ConfigDict(from_attributes=True)
+        orm_mode = True
+
+class MatriculaUpdate(BaseModel):
+    id_aluno: Optional[int] = None
+    id_curso: Optional[int] = None
+    data_matricula: Optional[date] = None
+
+    class Config:
+        orm_mode = True
 
 class NivelBase(BaseModel):
     nome: Optional[str] = None
@@ -111,15 +126,15 @@ class NivelBase(BaseModel):
 class NivelCreate(NivelBase):
     pass
 
-class NivelUpdate(NivelBase): 
-
-  
 class NivelUpdate(NivelBase):
     pass
 
 class Nivel(NivelBase):
     id: int
-    model_config = ConfigDict(from_attributes=True)
+    cursos: List[Curso] = []
+
+    class Config:
+        orm_mode = True
 
 class MaterialBase(BaseModel):
     nome: str
@@ -134,4 +149,7 @@ class MaterialUpdate(BaseModel):
 
 class Material(MaterialBase):
     id: int
-    model_config = ConfigDict(from_attributes=True)
+    cursos: List[Curso] = []
+
+    class Config:
+        orm_mode = True
