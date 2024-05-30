@@ -730,7 +730,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/escola/materiais/",
+							"raw": "http://127.0.0.1:8000/escola/disciplinas/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -741,7 +741,7 @@
 							"port": "8000",
 							"path": [
 								"escola",
-								"materiais",
+								"disciplinas",
 								""
 							]
 						}
@@ -754,7 +754,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/escola/materiais/1",
+							"raw": "http://127.0.0.1:8000/escola/disciplinas/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -765,7 +765,7 @@
 							"port": "8000",
 							"path": [
 								"escola",
-								"materiais",
+								"disciplinas",
 								"1"
 							]
 						}
@@ -778,7 +778,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/escola/materiais/",
+							"raw": "http://127.0.0.1:8000/escola/disciplinas/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -789,7 +789,7 @@
 							"port": "8000",
 							"path": [
 								"escola",
-								"materiais",
+								"disciplinas",
 								""
 							]
 						}
@@ -811,7 +811,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/escola/materiais/1",
+							"raw": "http://127.0.0.1:8000/escola/disciplinas/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -822,7 +822,7 @@
 							"port": "8000",
 							"path": [
 								"escola",
-								"materiais",
+								"disciplinas",
 								"1"
 							]
 						}
@@ -835,7 +835,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/escola/materiais/1",
+							"raw": "http://127.0.0.1:8000/escola/disciplinas/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -846,7 +846,7 @@
 							"port": "8000",
 							"path": [
 								"escola",
-								"materiais",
+								"disciplinas",
 								"1"
 							]
 						}
@@ -865,7 +865,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nome\": \"Curso de italiano Avançado\",\r\n  \"id_professor\": 2,\r\n  \"id_nivel\": 1,\r\n  \"id_material\": 1,\r\n  \"id_sala\": 1,\r\n  \"descricao\": \"Curso focado em conversação avançada e escrita.\",\r\n  \"data_inicio\": \"2024-06-01\",\r\n  \"data_fim\": \"2024-12-01\"\r\n}\r\n",
+							"raw": "{\r\n  \"nome\": \"Curso de italiano Avançado\",\r\n  \"id_professor\": 2,\r\n  \"id_nivel\": 1,\r\n  \"id_disciplinas\": 1,\r\n  \"id_sala\": 1,\r\n  \"descricao\": \"Curso focado em conversação avançada e escrita.\",\r\n  \"data_inicio\": \"2024-06-01\",\r\n  \"data_fim\": \"2024-12-01\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -898,7 +898,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nome\": \"Curso de Inglês Avançado - Atualizado\",\r\n  \"id_professor\": 2,\r\n  \"id_nivel\": 3,\r\n  \"id_material\": 4,\r\n  \"id_sala\": 5,\r\n  \"descricao\": \"Curso atualizado focado em conversação avançada e escrita.\",\r\n  \"data_inicio\": \"2024-07-01\",\r\n  \"data_fim\": \"2024-12-15\"\r\n}\r\n",
+							"raw": "{\r\n  \"nome\": \"Curso de Inglês Avançado - Atualizado\",\r\n  \"id_professor\": 2,\r\n  \"id_nivel\": 3,\r\n  \"id_disciplinas\": 4,\r\n  \"id_sala\": 5,\r\n  \"descricao\": \"Curso atualizado focado em conversação avançada e escrita.\",\r\n  \"data_inicio\": \"2024-07-01\",\r\n  \"data_fim\": \"2024-12-15\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
