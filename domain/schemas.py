@@ -21,7 +21,7 @@ class CursoBase(BaseModel):
     nome: str
     id_professor: int
     id_nivel: int
-    id_material: int
+    id_disciplinas: int
     id_sala: int
     descricao: Optional[str] = None
     data_inicio: date
@@ -34,7 +34,7 @@ class Curso(CursoBase):
     id: int
     professor: Optional[Professor] = None
     nivel: Optional['Nivel'] = None
-    material: Optional['Material'] = None
+    disciplinas: Optional['Disciplinas'] = None
     sala: Optional['Sala'] = None
 
     class Config:
@@ -44,7 +44,7 @@ class CursoUpdate(BaseModel):
     nome: Optional[str] = None
     id_professor: Optional[int] = None
     id_nivel: Optional[int] = None
-    id_material: Optional[int] = None
+    id_disciplinas: Optional[int] = None
     id_sala: Optional[int] = None
     descricao: Optional[str] = None
     data_inicio: Optional[date] = None
@@ -129,18 +129,18 @@ class Nivel(NivelBase):
     class Config:
         orm_mode = True
 
-class MaterialBase(BaseModel):
+class DisciplinasBase(BaseModel):
     nome: str
     descricao: str
 
-class MaterialCreate(MaterialBase):
+class DisciplinasCreate(DisciplinasBase):
     pass
 
-class MaterialUpdate(BaseModel):
+class DisciplinasUpdate(BaseModel):
     nome: Optional[str] = None
     descricao: Optional[str] = None
 
-class Material(MaterialBase):
+class Disciplinas(DisciplinasBase):
     id: int
 
     class Config:

@@ -49,9 +49,9 @@ def setup_data(client):
         "descricao": "Descrição do nível teste"
     })
 
-    client.post("escola/materiais/", json={
-        "nome": "Material Teste",
-        "descricao": "Descrição do material teste"
+    client.post("escola/disciplinas/", json={
+        "nome": "Disciplinas Teste",
+        "descricao": "Descrição da Disciplinas teste"
     })
 
     client.post("escola/salas/", json={
@@ -70,7 +70,7 @@ def setup_data(client):
         "nome": "Curso Teste",
         "id_professor": 1,
         "id_nivel": 1,
-        "id_material": 1,
+        "id_disciplinas": 1,
         "id_sala": 1,
         "descricao": "Descrição do curso teste",
         "data_inicio": "2023-01-01",
@@ -82,7 +82,7 @@ def test_create_curso(client, setup_data):
         "nome": "Curso Teste",
         "id_professor": 1,
         "id_nivel": 1,
-        "id_material": 1,
+        "id_disciplinas": 1,
         "id_sala": 1,
         "descricao": "Descrição do curso teste",
         "data_inicio": "2023-01-01",

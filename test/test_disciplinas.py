@@ -35,8 +35,8 @@ def clean_db():
     Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 
-def test_create_material(client):
-    response = client.post("/escola/materiais/", json={
+def test_create_disciplinas(client):
+    response = client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })
@@ -44,22 +44,22 @@ def test_create_material(client):
     assert response.json()["nome"] == "Livro de Inglês"
     assert response.json()["descricao"] == "Livro para nível básico"
 
-def test_read_material(client):
-    client.post("/escola/materiais/", json={
+def test_read_disciplinas(client):
+    client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })
-    response = client.get("/escola/materiais/1")
+    response = client.get("/escola/disciplinas/1")
     assert response.status_code == 200
     assert response.json()["nome"] == "Livro de Inglês"
     assert response.json()["descricao"] == "Livro para nível básico"
 
-def test_update_material(client):
-    client.post("/escola/materiais/", json={
+def test_update_disciplinas(client):
+    client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })
-    response = client.put("/escola/materiais/1", json={
+    response = client.put("/escola/disciplinas/1", json={
         "nome": "Livro de Espanhol",
         "descricao": "Livro para nível intermediário"
     })
@@ -67,31 +67,31 @@ def test_update_material(client):
     assert response.json()["nome"] == "Livro de Espanhol"
     assert response.json()["descricao"] == "Livro para nível intermediário"
 
-def test_partial_update_material(client):
-    client.post("/escola/materiais/", json={
+def test_partial_update_disciplinas(client):
+    client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })
-    response = client.put("/escola/materiais/1", json={
+    response = client.put("/escola/disciplinas/1", json={
         "descricao": "Livro para nível avançado"
     })
     assert response.status_code == 200
     assert response.json()["nome"] == "Livro de Inglês"
     assert response.json()["descricao"] == "Livro para nível avançado"
 
-def test_delete_material(client):
-    client.post("/escola/materiais/", json={
+def test_delete_disciplinas(client):
+    client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })
-    response = client.delete("/escola/materiais/1")
+    response = client.delete("/escola/disciplinas/1")
     assert response.status_code == 200
     assert response.json()["nome"] == "Livro de Inglês"
     assert response.json()["descricao"] == "Livro para nível básico"
 
 
-def test_create_material(client):
-    response = client.post("/escola/materiais/", json={
+def test_create_disciplinas(client):
+    response = client.post("/escola/disciplinas/", json={
         "nome": "Livro de Inglês",
         "descricao": "Livro para nível básico"
     })

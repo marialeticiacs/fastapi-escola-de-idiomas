@@ -19,7 +19,7 @@ class Curso(Base):
     nome = Column(String, index=True)
     id_professor = Column(Integer, ForeignKey("professores.id"))
     id_nivel = Column(Integer, ForeignKey("niveis.id"))
-    id_material = Column(Integer, ForeignKey("materiais.id"))
+    id_disciplinas = Column(Integer, ForeignKey("disciplinas.id"))
     id_sala = Column(Integer, ForeignKey("salas.id"))
     descricao = Column(String)
     data_inicio = Column(Date)
@@ -27,7 +27,7 @@ class Curso(Base):
     
     professor = relationship("Professor", back_populates="cursos")
     nivel = relationship("Nivel", back_populates="cursos")
-    material = relationship("Material", back_populates="cursos")
+    disciplinas = relationship("Disciplinas", back_populates="cursos")
     sala = relationship("Sala", back_populates="cursos")
     matriculas = relationship("Matricula", back_populates="curso")
 
@@ -69,10 +69,10 @@ class Nivel(Base):
     descricao = Column(String, nullable=True)
     cursos = relationship('Curso', back_populates='nivel')
 
-class Material(Base):
-    __tablename__ = 'materiais'
+class Disciplinas(Base):
+    __tablename__ = 'disciplinas'
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, nullable=False)
     descricao = Column(String, nullable=False)
-    cursos = relationship('Curso', back_populates='material')
+    cursos = relationship('Curso', back_populates='disciplinas')
