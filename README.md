@@ -3,10 +3,10 @@
 Este projeto foi desenvolvido como parte da disciplina de Programação Multiplataforma 1. É uma API construída com FastAPI para gerenciar uma escola de idiomas.
 
 ### Funcionalidades
-- Cadastro e gerenciamento de professores, alunos, matérias, níveis, salas, cursos e matrículas.
+- Cadastro e gerenciamento de professores, alunos, disciplinas, níveis, salas, cursos e matrículas.
 - Recuperação de informações de acordo com a hierarquia:
 
-  Professor > Aluno > Matéria > Nível > Sala > Curso > Matrícula.
+  Professor > Aluno > Disciplina > Nível > Sala > Curso > Matrícula.
 
 ### Instalação 
 1. Clone o repositório para seu ambiente local.
