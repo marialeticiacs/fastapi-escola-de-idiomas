@@ -46,7 +46,6 @@ class Sala(Base):
     __tablename__ = 'salas'
 
     id = Column(Integer, primary_key=True, index=True)
-    insumo = Column(String, nullable=False)
     nome = Column(String, nullable=False)
     capacidade = Column(Integer, nullable=False)
     cursos = relationship('Curso', back_populates='sala')

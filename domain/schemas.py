@@ -13,7 +13,6 @@ class ProfessorCreate(ProfessorBase):
 
 class Professor(ProfessorBase):
     id: int
-    cursos: List['Curso'] = []
 
     class Config:
         orm_mode = True
@@ -37,7 +36,6 @@ class Curso(CursoBase):
     nivel: Optional['Nivel'] = None
     material: Optional['Material'] = None
     sala: Optional['Sala'] = None
-    matriculas: List['Matricula'] = []
 
     class Config:
         orm_mode = True
@@ -72,7 +70,6 @@ class AlunoUpdate(BaseModel):
 
 class Aluno(AlunoBase):
     id: int
-    matriculas: List['Matricula'] = []
 
     class Config:
         orm_mode = True
@@ -90,7 +87,6 @@ class SalaUpdate(BaseModel):
 
 class Sala(SalaBase):
     id: int
-    cursos: List[Curso] = []
 
     class Config:
         orm_mode = True
@@ -105,8 +101,6 @@ class MatriculaCreate(MatriculaBase):
 
 class Matricula(MatriculaBase):
     id: int
-    aluno: Optional[Aluno] = None
-    curso: Optional[Curso] = None
 
     class Config:
         orm_mode = True
@@ -131,7 +125,6 @@ class NivelUpdate(NivelBase):
 
 class Nivel(NivelBase):
     id: int
-    cursos: List[Curso] = []
 
     class Config:
         orm_mode = True
@@ -149,7 +142,6 @@ class MaterialUpdate(BaseModel):
 
 class Material(MaterialBase):
     id: int
-    cursos: List[Curso] = []
 
     class Config:
         orm_mode = True

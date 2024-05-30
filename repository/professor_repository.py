@@ -9,7 +9,6 @@ def get_professors(db: Session, skip: int = 0, limit: int = 10):
 
 def create_professor(db: Session, professor: schemas.ProfessorCreate):
     db_professor = models.Professor(**professor.dict())
-    db_professor = models.Professor(nome=professor.nome)
     db.add(db_professor)
     db.commit()
     db.refresh(db_professor)

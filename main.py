@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from controller import professor_controller, nivel_controller, aluno_controller, material_controller, sala_controller
-
-
+from controller import professor_controller, curso_controller, matricula_controller, nivel_controller, aluno_controller, material_controller, sala_controller
 
 app = FastAPI()
 
@@ -17,3 +15,5 @@ app.include_router(nivel_controller.router, prefix="/escola")
 app.include_router(aluno_controller.router, prefix="/escola")
 app.include_router(sala_controller.router, prefix="/escola")
 app.include_router(material_controller.router, prefix="/escola")
+app.include_router(curso_controller.router, prefix="/escola")
+app.include_router(matricula_controller.router, prefix="/escola")

@@ -9,7 +9,7 @@ DATABASE_USER = 'postgres'
 DATABASE_PASSWORD = '123456'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
-DATABASE_NAME = 'escola_idiomas' 
+DATABASE_NAME = 'escola_idiomas_teste' 
 
 DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
@@ -104,3 +104,16 @@ def test_delete_aluno(client):
     response = client.delete("/escola/alunos/1")
     assert response.status_code == 200
     assert response.json()["nome"] == "Ana Teste"
+
+def test_create_aluno(client):
+    response = client.post("/escola/alunos/", json={
+        "nome": "Test Aluno",
+        "cpf": "123.456.789-00",
+        "email": "test.aluno@example.com",
+        "dt_nascimento": "2000-01-01"
+    })
+    assert response.status_code == 201
+    assert response.json()["nome"] == "Test Aluno"
+    assert response.json()["cpf"] == "123.456.789-00"
+    assert response.json()["email"] == "test.aluno@example.com"
+    assert response.json()["dt_nascimento"] == "2000-01-01"

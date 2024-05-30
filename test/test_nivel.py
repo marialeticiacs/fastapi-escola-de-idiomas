@@ -9,7 +9,7 @@ DATABASE_USER = 'postgres'
 DATABASE_PASSWORD = '123456'
 DATABASE_HOST = 'localhost'
 DATABASE_PORT = '5432'
-DATABASE_NAME = 'escola_idiomas' 
+DATABASE_NAME = 'escola_idiomas_teste' 
 
 DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
@@ -73,3 +73,12 @@ def test_delete_nivel(client):
     response = client.delete("/escola/niveis/1")
     assert response.status_code == 200
     assert response.json()["nome"] == "Básico"
+
+def test_create_nivel(client):
+    response = client.post("/escola/niveis/", json={
+        "nome": "Básico",
+        "descricao": "Nível básico de proficiência"
+    })
+    assert response.status_code == 201
+    assert response.json()["nome"] == "Básico"
+    assert response.json()["descricao"] == "Nível básico de proficiência"
